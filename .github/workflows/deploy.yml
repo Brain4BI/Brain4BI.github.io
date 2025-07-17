@@ -14,3 +14,4 @@ jobs:
           BUILD_DIR: .
           PAGES_BRANCH: gh-pages
           TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CNAME: brain4bi.org
