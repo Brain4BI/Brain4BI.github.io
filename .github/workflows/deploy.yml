@@ -9,11 +9,11 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build site with Zola
-        run: zola build
+        # run: zola build
         # Или, если zola не установлен:
-        # run: |
-        #   curl -sSf https://get.zola.rs | sh
-        #   ./zola build
+        run: |
+           curl -sSf https://get.zola.rs | sh
+           ./zola build
 
       - name: Create CNAME
         run: echo "brain4bi.org" > public/CNAME
