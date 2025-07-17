@@ -1,3 +1,4 @@
+# On every push this script is executed
 on: push
 name: Build and deploy GH Pages
 jobs:
@@ -7,19 +8,9 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v4
-
-      - name: Build site with Zola
-        # run: zola build
-        # Или, если zola не установлен:
-        run: |
-           curl -sSf https://get.zola.rs | sh
-           ./zola build
-
-      - name: Create CNAME
-        run: echo "brain4bi.org" > public/CNAME
-
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
+      - name: build_and_deploy
+        uses: shalzz/zola-deploy-action@master
+        env:
+          BUILD_DIR: .
+          PAGES_BRANCH: gh-pages
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
